@@ -1,8 +1,6 @@
-# NYTimes Objective-C Style Guide
+# Macys Objective-C Style Guide
 
-This style guide outlines the coding conventions of the iOS team at The New York Times. We welcome your feedback in [issues](https://github.com/NYTimes/objetive-c-style-guide/issues), [pull requests](https://github.com/NYTimes/objetive-c-style-guide/pulls) and [tweets](https://twitter.com/nytimesmobile). Also, [we're hiring](http://jobs.nytco.com/job/New-York-iOS-Developer-Job-NY/2572221/).
-
-Thanks to all of [our contributors](https://github.com/NYTimes/objective-c-style-guide/contributors).
+This was forked from The New York Times Objective-C Style Guide to meet our team coding conventions and style.
 
 ## Introduction
 
@@ -167,12 +165,12 @@ Property definitions should be used in place of naked instance variables wheneve
 
 Apple naming conventions should be adhered to wherever possible, especially those related to [memory management rules](https://developer.apple.com/library/mac/#documentation/Cocoa/Conceptual/MemoryMgmt/Articles/MemoryMgmt.html) ([NARC](http://stackoverflow.com/a/2865194/340508)).
 
-Long, descriptive method and variable names are good.
+Long, descriptive method and variable names are good. In addition, to work better with Xcode autocomplete, the name structure is <objectClassName><objectName>.
 
 **For example:**
 
 ```objc
-UIButton *settingsButton;
+UIButton *buttonSettings;
 ```
 
 **Not**
