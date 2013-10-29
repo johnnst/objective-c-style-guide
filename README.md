@@ -135,6 +135,41 @@ In method signatures, there should be a space after the scope (-/+ symbol). Ther
 ```objc
 - (void)setExampleText:(NSString *)text image:(UIImage *)image;
 ```
+
+For method declaration, do not declare the method on the @interface area of the implementation file because it is no longer necessary. For example:
+
+**For Example**:
+```objc
+@interface SomeClass ()
+
+@end
+
+@implementation
+
+-(void)doSomething {
+	// code here
+}
+
+@end
+```
+
+**Not:**
+```objc
+@interface SomeClass ()
+
+-(void)doSomething; // unnecessary
+
+@end
+
+@implementation
+
+-(void)doSomething {
+	// code here
+}
+
+@end
+```
+
 ## Variables
 
 Variables should be named as descriptively as possible. Single letter variable names should be avoided except in `for()` loops.
@@ -217,7 +252,7 @@ When they are needed, comments should be used to explain **why** a particular pi
 
 Block comments should generally be avoided, as code should be as self-documenting as possible, with only the need for intermittent, few-line explanations. This does not apply to those comments used to generate documentation.
 
-## init and dealloc
+## init and dealloc, super
 
 `dealloc` methods should be placed at the top of the implementation, directly after the `@synthesize` and `@dynamic` statements. `init` should be placed directly below the `dealloc` methods of any class.
 
@@ -234,6 +269,17 @@ Block comments should generally be avoided, as code should be as self-documentin
 }
 ```
 
+In general, teardown supers should be placed at the end of the method. For example:
+
+```objc
+- (void)viewWillDisappear {
+   // do your stuff here
+   // ...
+   
+   [super viewWillDisappear];
+}
+```
+
 ## Literals
 
 `NSString`, `NSDictionary`, `NSArray`, and `NSNumber` literals should be used whenever creating immutable instances of those objects. Pay special care that `nil` values not be passed into `NSArray` and `NSDictionary` literals, as this will cause a crash.
@@ -243,6 +289,7 @@ Block comments should generally be avoided, as code should be as self-documentin
 ```objc
 NSArray *names = @[@"Brian", @"Matt", @"Chris", @"Alex", @"Steve", @"Paul"];
 NSDictionary *productManagers = @{@"iPhone" : @"Kate", @"iPad" : @"Kamal", @"Mobile Web" : @"Bill"};
+productManagers[@"iPhone"];
 NSNumber *shouldUseLiterals = @YES;
 NSNumber *buildingZIPCode = @10018;
 ```
@@ -252,6 +299,7 @@ NSNumber *buildingZIPCode = @10018;
 ```objc
 NSArray *names = [NSArray arrayWithObjects:@"Brian", @"Matt", @"Chris", @"Alex", @"Steve", @"Paul", nil];
 NSDictionary *productManagers = [NSDictionary dictionaryWithObjectsAndKeys: @"Kate", @"iPhone", @"Kamal", @"iPad", @"Bill", @"Mobile Web", nil];
+[productManagers objectForKey:@"iPhone"];
 NSNumber *shouldUseLiterals = [NSNumber numberWithBool:YES];
 NSNumber *buildingZIPCode = [NSNumber numberWithInteger:10018];
 ```
@@ -303,6 +351,7 @@ static const CGFloat NYTImageThumbnailHeight = 50.0;
 
 #define thumbnailHeight 2
 ```
+However, for singleton + notification pattern, use #define over constants.
 
 ## Enumerated Types
 
@@ -332,6 +381,12 @@ Private properties should be declared in class extensions (anonymous categories)
 
 @end
 ```
+
+## h vs m files
+
+In general, all properties, methods, and imports should be in the m file. Decide carefully which property, method, or import should be in the h file.
+
+Any property or method in the h file should be accompanied by proper comments.
 
 ## Image Naming
 
@@ -382,11 +437,20 @@ if (isAwesome == YES) // Never do this.
 
 -----
 
-If the name of a `BOOL` property is expressed as an adjective, the property can omit the “is” prefix but specifies the conventional name for the get accessor, for example:
+For BOOL property declaration, use this style unless there is special circumstance that requires specific attributes.
+
+**For Example:**
 
 ```objc
-@property (assign, getter=isEditable) BOOL editable;
+@property BOOL editable;
 ```
+
+**Not:**
+
+```objc
+@property (nonatomic, assign) BOOL editable;
+```
+
 Text and example taken from the [Cocoa Naming Guidelines](https://developer.apple.com/library/mac/#documentation/Cocoa/Conceptual/CodingGuidelines/Articles/NamingIvarsAndTypes.html#//apple_ref/doc/uid/20001284-BAJGIIJE).
 
 ## Singletons
