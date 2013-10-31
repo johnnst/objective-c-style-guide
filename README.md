@@ -275,8 +275,32 @@ Block comments should generally be avoided, as code should be as self-documentin
 }
 ```
 
-In general, teardown supers should be placed at the end of the method. For example:
+In general, `super` should be the first thing you call in a method. 
 
+**For example:**
+```objc
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    
+    // then the rest of the code
+
+}
+```
+
+**Not:**
+```objc
+- (void)viewDidLoad {
+     
+     // some code here
+     
+    [super viewDidLoad];
+}
+```
+
+
+However, teardown `super` should be placed at the end of the method. For example:
+
+**For example:**
 ```objc
 - (void)viewWillDisappear {
    // do your stuff here
