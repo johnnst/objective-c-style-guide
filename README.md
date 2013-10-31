@@ -214,6 +214,12 @@ UIButton *buttonSettings;
 UIButton *setBut;
 ```
 
+**And Not**
+
+```objc
+UIButton *settingsButton;
+```
+
 A three letter prefix (e.g. `NYT`) should always be used for class names and constants, however may be omitted for Core Data entity names. Constants should be camel-case with all words capitalized and prefixed by the related class name for clarity.
 
 **For example:**
@@ -279,6 +285,21 @@ In general, teardown supers should be placed at the end of the method. For examp
    [super viewWillDisappear];
 }
 ```
+
+For object initialization, avoid using `new` and follow the conventional `alloc` `init`. 
+
+**For example:**
+
+```objc
+NSMutableArray *array = [[NSMutableArray alloc] init];
+```
+
+**Not:**
+
+```objc
+NSMutableArray *array = [NSMutableArray new];
+```
+
 
 ## Literals
 
@@ -437,18 +458,53 @@ if (isAwesome == YES) // Never do this.
 
 -----
 
+By default, the default attribute for properties are `atomic`, `readwrite`. For object, in most cases, it will default to `strong`. For primitives, it is default to `assign`.
+
+**For Example:**
+```objc
+@property CGFloat hello;
+@property NSString *bye;
+```
+**Same As:**
+```objc
+@property (atomic, readwrite, assign) CGFloat hello;
+@property (atomic, readwrite, strong) NSString *bye;
+```
+
 For BOOL property declaration, use this style unless there is special circumstance that requires specific attributes.
 
 **For Example:**
 
 ```objc
-@property BOOL editable;
+@property (nonatomic) BOOL editable;
 ```
 
 **Not:**
 
 ```objc
 @property (nonatomic, assign) BOOL editable;
+```
+
+For `strong` property declaration, use this style.
+
+**For Example:**
+
+```objc
+@property (nonatomic) NSString *helloWorld;
+```
+
+**Not:**
+
+```objc
+@property (nonatomic, strong) NSString *helloWorld;
+```
+
+For `weak` property declaration, use this style.
+
+**For Example:**
+
+```objc
+@property (nonatomic, weak) UILabel *labelStatus
 ```
 
 Text and example taken from the [Cocoa Naming Guidelines](https://developer.apple.com/library/mac/#documentation/Cocoa/Conceptual/CodingGuidelines/Articles/NamingIvarsAndTypes.html#//apple_ref/doc/uid/20001284-BAJGIIJE).
