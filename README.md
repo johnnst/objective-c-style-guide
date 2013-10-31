@@ -554,13 +554,7 @@ This will prevent [possible and sometimes prolific crashes](http://cocoasamurai.
 
 NSLog is the default console log output function. However, to have this running in production is both unnecessary and can create performance issues.
 
-We have the following macro to perform logging.
-
-#ifdef DEBUG
-#define DLog(...) NSLog(@"%s:%d %@", __PRETTY_FUNCTION__, __LINE__, [NSString stringWithFormat:__VA_ARGS__])
-#else
-#define DLog(...) do { } while (0)
-#endif
+We have created a logging macro that only generates output when the DEBUG macro exists and also includes the function name and line number. 
 
 Avoid using NSLog and use DLog only.
 
