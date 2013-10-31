@@ -200,7 +200,7 @@ Property definitions should be used in place of naked instance variables wheneve
 
 Apple naming conventions should be adhered to wherever possible, especially those related to [memory management rules](https://developer.apple.com/library/mac/#documentation/Cocoa/Conceptual/MemoryMgmt/Articles/MemoryMgmt.html) ([NARC](http://stackoverflow.com/a/2865194/340508)).
 
-Long, descriptive method and variable names are good. In addition, to work better with Xcode autocomplete, the name structure is <objectClassName><objectName>.
+Long, descriptive method and variable names are good. In addition, to work better with Xcode autocomplete, the name structure is a combination and order of the object name (eg. button, label) followed by the object description (eg. Done, Cancel, Status).
 
 **For example:**
 
