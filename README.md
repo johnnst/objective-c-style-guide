@@ -31,6 +31,7 @@ Here are some of the documents from Apple that informed the style guide. If some
 * [Private Properties](#private-properties)
 * [Image Naming](#image-naming)
 * [Booleans](#booleans)
+* [Run in background](#run-in-background)
 * [Singletons](#singletons)
 * [Xcode Project](#xcode-project)
 
@@ -532,6 +533,28 @@ For `weak` property declaration, use this style.
 ```
 
 Text and example taken from the [Cocoa Naming Guidelines](https://developer.apple.com/library/mac/#documentation/Cocoa/Conceptual/CodingGuidelines/Articles/NamingIvarsAndTypes.html#//apple_ref/doc/uid/20001284-BAJGIIJE).
+
+## Run in background
+
+When you need to run something in the background, use GCD.
+
+**For Example:**
+
+```objc
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        
+        // your background stuff here
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+			// perform UI updates on main thread
+            
+        });
+    });
+```
+
+In addition, do not create a serial queue when you do not need it, just use the example above.
+
 
 ## Singletons
 
