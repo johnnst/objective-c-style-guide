@@ -255,9 +255,35 @@ When using properties, instance variables should always be accessed and mutated 
 
 ## Comments
 
-When they are needed, comments should be used to explain **why** a particular piece of code does something. Any comments that are used must be kept up-to-date or deleted.
+When they are needed, comments should be used to explain **why** a particular piece of code does something. Any comments that are used must be kept up-to-date or deleted. Long comments should generally be avoided, as code should be as self-documenting as possible with only the need for brief descriptions. 
 
-Block comments should generally be avoided, as code should be as self-documenting as possible, with only the need for intermittent, few-line explanations. This does not apply to those comments used to generate documentation.
+We will be using appledoc for generating documentation, so the following syntax is required for comments included in documentation generation.
+
+**Syntax**
+
+```objc
+/** 
+ Add new message between source to destination timeline as empty name string
+ @param sourceId Source timeline entity ID
+ @param destId Destination timeline entity ID
+ @see someMethodWithString:
+ @warning *Warning:* A blue background.
+ @bug *Bug:* A yellow background.
+ @returns A newly created message instance
+ */
+```
+The foward slash and double asterisks will be picked up by appledoc for documentation generation.
+
+The following comment syntax will not be picked up by appledoc and can still be used for comments that should not be included in documentation generation.
+```objc
+/* comment */
+
+// comment
+```
+
+In header files, the interface, every property, and every method **must** have appledoc compliant comments.
+
+The details of appledoc installation and guidelines can be found on [Confluence](http://confluence/display/PdM/Code+documentation+and+commenting).
 
 ## init and dealloc, super
 
