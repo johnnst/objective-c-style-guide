@@ -15,6 +15,7 @@ Here are some of the documents from Apple that informed the style guide. If some
 
 * [Dot-Notation Syntax](#dot-notation-syntax)
 * [Spacing](#spacing)
+* [Pragma Mark](#pragma-mark)
 * [Conditionals](#conditionals)
   * [Ternary Operator](#ternary-operator)
 * [Error handling](#error-handling)
@@ -69,6 +70,49 @@ else {
 ```
 * There should be exactly one blank line between methods to aid in visual clarity and organization. Whitespace within methods should separate functionality, but often there should probably be new methods.
 * `@synthesize` and `@dynamic` should each be declared on new lines in the implementation.
+
+## Pragma Mark
+
+`#pragma mark` should always be used to group methods into functional or logical sections. Below are the usual `#pragma mark`s.
+
+`#pragma mark - View Lifecycle`
+viewDidLoad
+viewWillAppear
+didReceiveMemoryWarning
+
+`#pragma mark - IB Methods` OR `#pragma mark - IB Actions`
+Any method from Interface Builder.
+
+`#pragma mark - Private Methods`
+Methods accessible only within the implementation file.
+
+`#pragma mark - Public Methods`
+Methods exposed in the interface files.
+
+`#pragma mark - Service Methods`
+Methods exposed in the interface files that are meant to provide some sort of a service.
+
+`#pragma mark - Utilities`
+Methods that provide utilities such as serialization, calculation, formatting, etc.
+
+`#pragma mark - Handle Notifications`
+Methods that handle notifications from NSNotificationCenter.
+
+`#pragma mark - Handle Gestures`
+Methods that handle gestures such as tap and swipe.
+
+When using a delegate or datasource, just copy and paste the actual name into the pragma mark. This allows you to `Option + Click` it for the documentation within the pragma mark.
+
+`#pragma mark - UITableViewDelegate`
+
+`#pragma mark - UITableViewDataSource`
+
+`#pragma mark - UIAlertViewDelegate`
+
+`#pragma mark - UIScrollViewDelegate`
+
+`#pragma mark - SomeCustomDelegate`
+
 
 ## Conditionals
 
