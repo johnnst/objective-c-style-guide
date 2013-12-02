@@ -37,7 +37,7 @@ Here are some of the documents from Apple that informed the style guide. If some
 
 ## Dot-Notation Syntax
 
-Dot-notation should **always** be used for accessing and mutating properties. Bracket notation is preferred in all other instances.
+Dot-notation or bracket notation can be used for accessing and mutating properties.
 
 **For example:**
 ```objc
@@ -45,11 +45,13 @@ view.backgroundColor = [UIColor orangeColor];
 [UIApplication sharedApplication].delegate;
 ```
 
-**Not:**
+**OR:**
 ```objc
 [view setBackgroundColor:[UIColor orangeColor]];
 UIApplication.sharedApplication.delegate;
 ```
+
+Using bracket notation carries one advantage with Xcode auto-complete by providing guidance on the parameter type.
 
 ## Spacing
 
