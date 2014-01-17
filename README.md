@@ -43,13 +43,13 @@ Dot-notation or bracket notation can be used for accessing and mutating properti
 **For example:**
 ```objc
 view.backgroundColor = [UIColor orangeColor];
-[UIApplication sharedApplication].delegate;
+label.text = @"hi there";
 ```
 
 **OR:**
 ```objc
 [view setBackgroundColor:[UIColor orangeColor]];
-UIApplication.sharedApplication.delegate;
+[label setText:@"hi there"];
 ```
 
 Using bracket notation carries one advantage with Xcode auto-complete by providing guidance on the parameter type.
