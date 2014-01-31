@@ -29,6 +29,7 @@ Here are some of the documents from Apple that informed the style guide. If some
 * [CGRect Functions](#cgrect-functions)
 * [Constants](#constants)
 * [Enumerated Types](#enumerated-types)
+* [Models](#models)
 * [Private Properties](#private-properties)
 * [Image Naming](#image-naming)
 * [Booleans](#booleans)
@@ -482,6 +483,24 @@ typedef NS_ENUM(NSInteger, NYTAdRequestState) {
     NYTAdRequestStateInactive,
     NYTAdRequestStateLoading
 };
+```
+
+## Models
+
+When creating models, prefix the property name with a common identifier and a prefix that is not common in the iOS frameworks. Below are a few standards for certain properties.
+
+**For example:**
+
+```objc
+@interface SomeModel ()
+
+@property (nonatomic) NSURL *someURL;
+@property (nonatomic) NSString *someName;
+@property (nonatomic) NSTimeInterval *someCreatedDateTime;
+@property (nonatomic) NSTimeInterval *someUpdatedDateTime;
+@property (nonatomic) BOOL someFlag;
+
+@end
 ```
 
 ## Private Properties
