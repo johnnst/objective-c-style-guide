@@ -651,7 +651,7 @@ In addition, do not create a serial queue when you do not need it, just use the 
 
 Singleton objects should use a thread-safe pattern for creating their shared instance.
 ```objc
-+ (instancetype)sharedInstance {
++ (id)sharedInstance {
    static id sharedInstance = nil;
 
    static dispatch_once_t onceToken;
