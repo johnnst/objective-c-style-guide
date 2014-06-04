@@ -23,6 +23,7 @@ Here are some of the documents from Apple that informed the style guide. If some
 * [Variables](#variables)
 * [Naming](#naming)
   * [Underscores](#underscores)
+* [Enums](#enums)
 * [Comments](#comments)
 * [Init & Dealloc](#init-and-dealloc)
 * [Literals](#literals)
@@ -299,6 +300,30 @@ id varnm;
 ### Underscores
 
 When using properties, instance variables should always be accessed and mutated using `self.`. This means that all properties will be visually distinct, as they will all be prefaced with `self.`. Local variables should not contain underscores.
+
+## Enums
+
+For enums, use NS_ENUM macro.
+
+**For example:**
+
+```objc
+typedef NS_ENUM(NSInteger, SomeEnum) {
+	SomeEnumDefault = 0,
+	SomeEnumTypeA = 1,
+	SomeEnumTypeB = 2,
+};
+```
+
+**Not:**
+
+```objc
+typedef enum {
+	SomeEnumDefault,
+	SomeEnumTypeA,
+	SomeEnumTypeB
+}SomeEnum;
+```
 
 ## Comments
 
